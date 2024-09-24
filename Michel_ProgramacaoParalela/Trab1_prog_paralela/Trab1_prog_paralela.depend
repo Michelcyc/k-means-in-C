@@ -3,7 +3,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1727142548 source:d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\kmeans.c
+1727143566 source:d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\kmeans.c
 	"kmeans.h"
 
 1727142606 d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\kmeans.h
@@ -11,4 +11,12 @@
 	<string.h>
 	<math.h>
 	<time.h>
+
+1727195577 source:d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\help.c
+	"help.h"
+
+1727195602 d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\help.h
+	<stdlib.h>
+	<stdio.h>
+	<string.h>
 
