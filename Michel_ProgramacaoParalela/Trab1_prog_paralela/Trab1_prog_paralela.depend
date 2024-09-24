@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1727143360 source:d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1727142548 source:d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\kmeans.c
+	"kmeans.h"
+
+1727142606 d:\k-means-in-c\michel_programacaoparalela\trab1_prog_paralela\kmeans.h
+	<stdlib.h>
+	<string.h>
+	<math.h>
+	<time.h>
+
