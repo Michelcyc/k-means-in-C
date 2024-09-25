@@ -1,0 +1,90 @@
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 200 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 108.316000 s.;
+
+Teste 1 / Tentativa de paralelização 1:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 200 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 106.783000 s.;
+
+Conclusão:
+Aqui eu decidi que vou treinar com menos clusters pra não ficar parado esperando o treinamento.
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 20 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 14.156000 s.;
+
+Teste 2 / Tentativa de paralelização 1:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 20 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 51.993000 s.;
+
+Conclusão:
+Aqui eu percebi claramente que o OpenMP tá tendo tanto trabalho pra se configurar internamente que não
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 216.038000 s.;
+
+Teste 3 / Tentativa de paralelização 1:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 177.172000 s.;
+
+Conclusão:
+A ideia aqui era dobrar o número de clusters para aumentar o tempo de processamento e ver se a paralelização começaria a oferecer algo favorável.
+E de fato, ofereceu ganho de tempo.
+
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 216.038000 s.;
+
+Teste 4 / Tentativa de paralelização 2 (autoscaling):
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 175.133001 s
+
+Teste 4 / Tentativa de paralelização 3 (autoscaling + start_splitting):
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 144.338701 s
+
+Conclusão:
+Paralelizar outras partes sem ser apenas o looping principal vale a pena? Sim.
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 216.038000 s.;
+
+Teste 5 / Tentativa de paralelização 4 (autoscaling + start_splitting + get_distances):
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering > 10 minutos;
+
+Conclusão:
+Paralelizar mais partes dentro do loop principal vale a pena? Em certos casos não mesmo !!
+Surge a ideia de reduzir os locais de paralelismo e aumentar o uso de reductions e diminuir o uso de atomics e criticals
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 216.038000 s.;
+
+Teste 6 / Tentativa de paralelização 5 (menos trechos de paralelizacao e um reduction):
+Time for k-means clustering > 5 minutos;
+
+Teste 6 / Tentativa de paralelização 6:
+Time for k-means clustering > 5 minutos;
+
+Teste 6 / Tentativa de paralelização 7:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 52.532527 s
+
+Conclusão:
+Redução para 1/4 do tempo + hyperthreading 1/4,8. Ideal de redução de ~1/5 no tempo.
+___________________________________________________________________________________________________
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_program.exe ..\datasets\iot_attacks\data.txt 965036 115 20 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 14.156000 s.;
+
+Teste 7 / Tentativa de paralelização 7:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_parallel_program.exe ..\datasets\iot_attacks\data.txt 965036 115 20 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 4.165142 s
+
+Conclusão:
+Tá ótimo, agora é partir pro paper.
+

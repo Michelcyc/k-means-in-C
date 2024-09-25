@@ -30,7 +30,12 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-fopenmp" />
 		</Compiler>
+		<Unit filename="help.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="help.h" />
 		<Unit filename="kmeans.c">
 			<Option compilerVar="CC" />
 		</Unit>
