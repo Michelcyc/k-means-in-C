@@ -1,4 +1,5 @@
 #include "kmeans.h"
+#include <stdio.h>
 
 double get_distance(const double *x1, const double *x2, int m) {
 	double d, r = 0.0;
@@ -75,6 +76,7 @@ char check_splitting(const double *x, double *c, int* const res, const int n, co
 	int *nums = (int*)malloc(k * sizeof(int));
 	memset(nums, 0, k * sizeof(int));
 	char flag = 0;
+	printf("Ocorreu uma iteracao do k-means \n");
 	int i, j, f;
 	for (i = 0; i < n; i++) {
 		f = get_cluster(x + i * m, c, m, k);

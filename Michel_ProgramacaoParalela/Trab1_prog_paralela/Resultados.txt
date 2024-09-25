@@ -88,3 +88,16 @@ Time for k-means clustering = 4.165142 s
 Conclusão:
 Tá ótimo, agora é partir pro paper.
 
+___________________________________________________________________________________________________
+Observação: Não foi tão lindo e belo quanto eu imaginei, alguma operação estava errada, tive que recomeçar
+Sequential
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans_seq ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 215.019000 s.;
+
+Teste 8 / Tentativa de paralelização 8:
+PS D:\k-means-in-C\Michel_ProgramacaoParalela\Trab1_prog_paralela> .\kmeans ..\datasets\iot_attacks\data.txt 965036 115 400 ..\datasets\iot_attacks\new_result.txt
+Time for k-means clustering = 51.832000 s.;
+
+Conclusão:
+Mantive a redução boa que se aproximava dos 80% agora com uma paralelização correta.
+
